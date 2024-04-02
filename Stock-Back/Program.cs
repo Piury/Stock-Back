@@ -55,7 +55,11 @@ namespace Stock_Back
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Stock_Back API v1"); //Versioning of APIs
+                    c.RoutePrefix = string.Empty;  // Set Swagger UI at apps root and redirect and url prefix
+                });
                 app.UseCors("MyAllowSpecificOrigins");
             }
             app.UseExceptionHandler("/Error");
